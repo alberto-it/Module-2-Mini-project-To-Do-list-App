@@ -11,8 +11,7 @@ def get_user_choice():
             if choice in menu_options.keys():
                 return choice
             else:
-                last_opt = list(menu_options.keys())[-1]
-                print(f"Invalid choice. Please enter a number between 1 and {last_opt}.")
+                print(f"Invalid choice. Please enter a number between 1 and {len(menu_options)}.")
         except ValueError:
                 print("Invalid input. Please enter a number.")
 
