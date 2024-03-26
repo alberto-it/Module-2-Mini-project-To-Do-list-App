@@ -1,9 +1,15 @@
 def get_user_choice():
     print("\nMenu:")
-    print("1. Add a task")
-    print("2. View tasks" if tasks else "2. View tasks (currently none to view)")
-    print("3. Mark a task as complete" if tasks and len(tasks) != sum(1 for task in tasks if task.startswith("[COMPLETED]")) else "3. Mark a task as complete (currently none to mark)")
-    print("4. Delete a task" if tasks else "4. Delete a task (currently none to delete)")
+    if tasks:
+        print("1. Add another task")
+        print("2. View tasks")
+        print("3. Mark a task as complete ✅" if len(tasks) != sum(1 for task in tasks if task[0] == "✅") else "3. Mark a task as complete (currently all are ✅)")
+        print("4. Delete a task" if tasks else "4. Delete a task (currently none to delete)")
+    else:
+        print("1. Add first task")
+        print("2. View tasks (currently nothing to view)")
+        print("3. Mark a task as complete (currently nothing to ✅)")
+        print("4. Delete a task (currently nothing to delete)")
     print("5. Quit")
     while True:
         try:
@@ -19,6 +25,7 @@ def add_task(task):
     task = input("Enter task description: ")
     tasks.append(task)
     print("Task added successfully.")
+    view_tasks(tasks)
 
 def view_tasks(tasks):
     if tasks:
@@ -38,11 +45,12 @@ def mark_task_complete(tasks):
         try:
             task_nbr = int(input("Enter the number of the task to mark complete: "))
             if 1 <= task_nbr <= len(tasks):
-                if tasks[task_nbr-1].startswith("[COMPLETED]"):
-                    print(f"Task #{task_nbr} was already marked as completed.")
+                if tasks[task_nbr-1][0] == "✅":
+                    print(f"Task #{task_nbr} was already marked as completed ✅")
                 else:
-                    tasks[task_nbr-1] = f"[COMPLETED] {tasks[task_nbr-1]}"
-                    print(f"Task #{task_nbr} marked complete.")
+                    tasks[task_nbr-1] = f"✅ {tasks[task_nbr-1]}"
+                    print(f"Task #{task_nbr} marked complete ✅")
+                    view_tasks(tasks)
                 break
             else:
                 print("Invalid task number. Please enter a number between 1 and", len(tasks))
@@ -61,6 +69,7 @@ def delete_task(tasks):
             if 1 <= task_nbr <= len(tasks):
                 del tasks[task_nbr-1]
                 print(f"Task # {task_nbr} deleted.")
+                view_tasks(tasks)
                 break
             else:
                 print("Invalid task number. Please enter a number between 1 and", len(tasks))
