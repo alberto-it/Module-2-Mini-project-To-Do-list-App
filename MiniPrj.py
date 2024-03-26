@@ -29,19 +29,24 @@ def view_tasks(tasks):
         print("There are no tasks in the list.")
 
 def mark_task_complete(tasks):
-    view_tasks(tasks)
     while True:
+        if tasks:
+            view_tasks(tasks)
+        else:
+            print("There are no tasks to mark as complete.")
+            break
         try:
             task_nbr = int(input("Enter the number of the task to mark complete: "))
             if 1 <= task_nbr <= len(tasks):
                 if tasks[task_nbr-1][:11] != "[COMPLETED]":
                     tasks[task_nbr-1] = f"[COMPLETED] {tasks[task_nbr-1]}"
                     print(f"Task #{task_nbr} marked complete.")
-                return
+                break
             else:
                 print("Invalid task number. Please enter a number between 1 and", len(tasks))
         except ValueError:
             print("Invalid input. Please enter a number.")
+
 
 def delete_task(tasks):
     while True:
@@ -49,13 +54,13 @@ def delete_task(tasks):
             view_tasks(tasks)
         else:
             print("There are no tasks to delete.")
-            return
+            break
         try:
             task_nbr = int(input("Enter the number of the task to delete: "))
             if 1 <= task_nbr <= len(tasks):
                 del tasks[task_nbr-1]
                 print(f"Task # {task_nbr} deleted.")
-                return
+                break
             else:
                 print("Invalid task number. Please enter a number between 1 and", len(tasks))
         except ValueError:
