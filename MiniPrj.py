@@ -2,7 +2,7 @@ def get_user_choice():
     print("\nMenu:")
     print("1. Add a task")
     print("2. View tasks" if tasks else "2. View tasks (currently none to view)")
-    print("3. Mark a task as complete" if tasks else "3. Mark a task as complete (currently none to mark)")
+    print("3. Mark a task as complete (currently none to mark)" if not tasks or len(tasks) == sum(1 for task in tasks if task.startswith("[COMPLETED]")) else "3. Mark a task as complete")
     print("4. Delete a task" if tasks else "4. Delete a task (currently none to delete)")
     print("5. Quit")
     while True:
@@ -38,7 +38,7 @@ def mark_task_complete(tasks):
         try:
             task_nbr = int(input("Enter the number of the task to mark complete: "))
             if 1 <= task_nbr <= len(tasks):
-                if tasks[task_nbr-1][:11] == "[COMPLETED]":
+                if tasks[task_nbr-1].startswith("[COMPLETED]"):
                     print(f"Task #{task_nbr} was already marked as completed.")
                 else:
                     tasks[task_nbr-1] = f"[COMPLETED] {tasks[task_nbr-1]}"
