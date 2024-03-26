@@ -54,7 +54,7 @@ def delete_task(tasks):
             task_nbr = int(input("Enter the number of the task to delete: "))
             if 1 <= task_nbr <= len(tasks):
                 del tasks[task_nbr-1]
-                print("Task deleted.")
+                print(f"Task # {task_nbr} deleted.")
                 return
             else:
                 print("Invalid task number. Please enter a number between 1 and", len(tasks))
