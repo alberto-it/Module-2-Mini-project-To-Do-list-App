@@ -2,7 +2,7 @@ def get_user_choice():
     print("\nMenu:")
     print("1. Add a task")
     print("2. View tasks" if tasks else "2. View tasks (currently none to view)")
-    print("3. Mark a task as complete (currently none to mark)" if not tasks or len(tasks) == sum(1 for task in tasks if task.startswith("[COMPLETED]")) else "3. Mark a task as complete")
+    print("3. Mark a task as complete" if tasks and len(tasks) != sum(1 for task in tasks if task.startswith("[COMPLETED]")) else "3. Mark a task as complete (currently none to mark)")
     print("4. Delete a task" if tasks else "4. Delete a task (currently none to delete)")
     print("5. Quit")
     while True:
