@@ -6,4 +6,3 @@ Once users selects their option in get_user_choice(), the corresponding dictiona
 - view_tasks() - Prints the tasks list or "no tasks in list" if empty.
 - mark_task_complete() - Adds ✅ to the front of the selected task (with validation). Does nothing if task was already marked.
 - delete_task() - If tasks list is not empty, shows tasks and asks users to enter which one to delete (with validations).
-- bye() - Thanks the user and exits program.
