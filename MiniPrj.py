@@ -49,7 +49,6 @@ def mark_task_complete(tasks):
         except ValueError:
             print("Invalid input. Please enter a number.")
 
-
 def delete_task(tasks):
     while True:
         if tasks:
