@@ -36,7 +36,7 @@ def mark_task_complete(tasks):
             if 1 <= task_nbr <= len(tasks):
                 if tasks[task_nbr-1][:11] != "[COMPLETED]":
                     tasks[task_nbr-1] = f"[COMPLETED] {tasks[task_nbr-1]}"
-                    print("Task marked complete.")
+                    print(f"Task #{task_nbr} marked complete.")
                 return
             else:
                 print("Invalid task number. Please enter a number between 1 and", len(tasks))
