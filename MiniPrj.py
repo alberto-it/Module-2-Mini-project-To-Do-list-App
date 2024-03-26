@@ -14,10 +14,10 @@ def get_user_choice():
     while True:
         try:
             choice = int(input("\nEnter your choice: "))
-            if choice in menu_options.keys():
+            if choice in range(1,6):
                 return choice
             else:
-                print(f"Invalid choice. Please enter a number between 1 and {len(menu_options)}.")
+                print(f"Invalid choice. Please enter a number between 1 and 5.")
         except ValueError:
                 print("Invalid input. Please enter a number.")
 
@@ -76,19 +76,19 @@ def delete_task(tasks):
         except ValueError:
             print("Invalid input. Please enter a number.")
 
-def bye(tasks):
-    print("\nThanks for using the To-Do App!\n")
-    exit()
-
 menu_options = {
     1: add_task,
     2: view_tasks,
     3: mark_task_complete,
-    4: delete_task,
-    5: bye
+    4: delete_task
 }
 
 print("\nWelcome to the To-Do List App!")
 tasks = []
 while True:
-    menu_options[get_user_choice()](tasks)
+    choice = get_user_choice()
+    if choice == 5:  
+        print("\nThanks for using the To-Do App!\n")
+        break 
+    else:
+        menu_options[choice](tasks)
